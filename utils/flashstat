@@ -120,7 +120,6 @@ sub get_sysctl{
   foreach my $line (@lines){
     if($line =~ /\+/){ # for new version of flashcache sysctl has per ssd+disk dev parameter
       my $dev_device = basename($dmsetup_table{ssd_dev})."+".basename($dmsetup_table{disk_dev});
-      $dev_device =~ s/\/dev\///g;
       $flashcache_stats_new_version = "/proc/flashcache/".$dev_device."/flashcache_stats";
       next if($line !~ /\Q$dev_device\E/);
     }
